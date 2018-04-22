@@ -27,8 +27,11 @@
             xtype: 'rallyaddnew',
             recordTypes: ['User Story', 'Defect'],
             ignoredRequiredFields: ['Name', 'ScheduleState', 'Project'],
-            showAddWithDetails: false,
+            showAddWithDetails: true,
             listeners: {
+                create: function(addNew, record) {
+                       this.Msg.alert('Add New', 'Added record named ' + record.get('Name'));
+                       },
                 beforecreate: this._onBeforeCreate,
                 scope: this
             }
@@ -46,6 +49,7 @@
             }
         };
         this.cardBoard = this.add(cardBoardConfig);
+	//this.render();
     },
 
     _onBeforeCreate: function(addNewComponent, record) {
